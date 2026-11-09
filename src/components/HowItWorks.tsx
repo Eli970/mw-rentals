@@ -4,7 +4,7 @@ const STEPS = [
     body: "Filter the fleet by city and category, or tell us the brief. If we do not list it, we will say so quickly.",
   },
   {
-    title: "Inquire",
+    title: "Book",
     body: "Share dates and driver details. A coordinator confirms availability, inclusions, and the deposit within a few hours.",
   },
   {
@@ -28,7 +28,7 @@ export function HowItWorks() {
           </h2>
           <hr className="gold-rule" />
           <p className="lede">
-            Most first-time clients go from inquiry to a held vehicle the same
+            Most first-time clients go from booking request to a held vehicle the same
             business day. Peak holiday weeks in Dubai and Miami need a little
             more notice.
           </p>

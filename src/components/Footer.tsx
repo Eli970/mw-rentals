@@ -1,6 +1,10 @@
 import { CONTACT } from "../config";
 
-export function Footer() {
+type Props = {
+  onBookNow: () => void;
+};
+
+export function Footer({ onBookNow }: Props) {
   return (
     <footer className="site-footer">
       <div className="wrap">
@@ -15,11 +19,15 @@ export function Footer() {
             </div>
           </div>
           <nav className="footer-links" aria-label="Footer">
-            <a href="#fleet">Fleet</a>
-            <a href="#why">Why MW</a>
-            <a href="#how">How it works</a>
-            <a href="#faq">FAQ</a>
-            <a href="#inquire">Inquire</a>
+            <a href="/#fleet">Fleet</a>
+            <a href="/#why">Why MW</a>
+            <a href="/#how">How it works</a>
+            <a href="/#faq">FAQ</a>
+            <button type="button" className="footer-link-btn" onClick={onBookNow}>
+              Book Now
+            </button>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
             <a href={`mailto:${CONTACT.email}`}>Email</a>
           </nav>
         </div>
