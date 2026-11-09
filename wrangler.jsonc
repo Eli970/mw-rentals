@@ -3,6 +3,8 @@
   "name": "mw-rentals",
   // Keep current with today's date when creating or bumping this Worker.
   "compatibility_date": "2026-11-09",
+  "preview_urls": true,
+  "previews": {},
   "observability": {
     "enabled": true,
     "traces": {

@@ -20,6 +20,7 @@ Named desks in eight cities, short and long-term on the same rate card, cars sho
 
 ## Capabilities
 
+- Hero with booking bar (location, dates/times, Search)
 - Filter and sort the fleet (category, location, price, seats, transmission)
 - Open a car detail view with photo and specs
 - Book Now dialog with prefill (car, location, dates/times)
