@@ -6,10 +6,10 @@ type Props = {
   cars: Car[];
   draft: InquiryDraft;
   onChange: (next: InquiryDraft) => void;
-  onInquire: (name: string) => void;
+  onBook: (car: Car) => void;
 };
 
-export function Fleet({ cars, draft, onChange, onInquire }: Props) {
+export function Fleet({ cars, draft, onChange, onBook }: Props) {
   const filtered = cars.filter((car) => {
     const byCat = draft.category === "All" || car.category === draft.category;
     const byCity = draft.location === "All" || car.location === draft.location;
@@ -75,13 +75,13 @@ export function Fleet({ cars, draft, onChange, onInquire }: Props) {
 
         {filtered.length === 0 ? (
           <p className="empty">
-            Nothing in that combination yet. Reset the filters or send an
-            inquiry — we often source a match within a day.
+            Nothing in that combination yet. Reset the filters or send a
+            booking request — we often source a match within a day.
           </p>
         ) : (
           <div className="grid">
             {filtered.map((car) => (
-              <CarCard key={`${car.name}-${car.location}`} car={car} onInquire={onInquire} />
+              <CarCard key={`${car.name}-${car.location}`} car={car} onBook={onBook} />
             ))}
           </div>
         )}

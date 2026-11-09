@@ -22,6 +22,7 @@ export type InquiryPayload = {
   startDate: string;
   endDate: string;
   vehicle: string;
+  driverAge: string;
   message: string;
 };
 
@@ -30,7 +31,7 @@ export function buildInquiryMessage(
   draft: InquiryDraft,
 ): string {
   const lines = [
-    `Hello MW Rentals, I would like to inquire about a rental.`,
+    `Hello MW Rentals, I would like to book a rental.`,
     ``,
     `Name: ${payload.name}`,
     `Email: ${payload.email}`,
@@ -40,6 +41,7 @@ export function buildInquiryMessage(
     `Category: ${draft.category && draft.category !== "All" ? draft.category : "Flexible"}`,
     `Pickup: ${payload.startDate || draft.startDate || "—"}`,
     `Return: ${payload.endDate || draft.endDate || "—"}`,
+    `Driver age: ${payload.driverAge || "—"}`,
   ];
   if (payload.message.trim()) {
     lines.push("", payload.message.trim());
@@ -52,6 +54,10 @@ export function whatsappUrl(text: string): string {
 }
 
 export function mailtoUrl(text: string, name: string): string {
-  const subject = encodeURIComponent(`Rental inquiry from ${name || "website"}`);
+  const subject = encodeURIComponent(`Rental booking from ${name || "website"}`);
   return `mailto:${CONTACT.email}?subject=${subject}&body=${encodeURIComponent(text)}`;
+}
+
+export function getPath(): string {
+  return window.location.pathname.replace(/\/+$/, "") || "/";
 }

@@ -51,20 +51,25 @@ You will need to be logged in (`npx wrangler login`) or provide `CLOUDFLARE_API_
 - `src/data/cars.json` — fleet catalog `{ name, category, pricePerDay, image, minAge, location }`. Swap this file (or fetch it) when moving the catalog to Sanity.
 - `src/config.ts` — brand contact details (email, WhatsApp/phone). Update before going live.
 - `public/logo.jpg` — brand mark; also used as favicon and Open Graph image.
-- `wrangler.jsonc` — Worker name `mw-rentals`, `compatibility_date` current, `assets.directory` `./dist`, SPA `not_found_handling`.
+- `public/cars/` — studio-style white-background fleet cutouts (all facing left).
+- `wrangler.jsonc` — Worker name `mw-rentals`, `compatibility_date` current, `assets.directory` `./dist`, SPA `not_found_handling` so `/privacy` and `/terms` load on refresh.
 
-## Inquiry form
+## Booking form
 
-There is **no backend yet**. Submit opens a prefilled WhatsApp chat and a `mailto:` draft, then shows a success state.
+**Book Now** (nav, fleet cards, footer, concierge section) opens an accessible dialog prefilled with the chosen car. There is **no backend yet**. Submit opens a prefilled WhatsApp chat and a success state with a mailto fallback.
 
 ```ts
 // TODO: Replace client-side WhatsApp / mailto with a Worker API route
-// that stores inquiries (Sanity, D1, or email via Resend) and sends a
+// that stores bookings (Sanity, D1, or email via Resend) and sends a
 // confirmation. Keep this form posting JSON matching InquiryPayload.
 ```
 
-See `src/components/Inquiry.tsx`.
+See `src/components/BookingDialog.tsx`.
+
+## Legal pages
+
+`/privacy` and `/terms` are generic car-hire templates for client review, linked in the footer. They are client-routed; Workers serves `index.html` for unknown paths via `assets.not_found_handling: "single-page-application"`.
 
 ## Design
 
-Navy `#0b1a3a`, gold `#c9a227`, and white. Original copy; car photography from Unsplash. Layout reference was a premium rental catalog (hero inquiry, filterable fleet cards, why-us, how-it-works, stories, FAQ, contact, footer) — content and imagery are original to MW Rentals.
+Navy `#0b1a3a`, gold `#c9a227`, and white. Self-hosted **Fraunces** (headings) and **Figtree** (body) via `@fontsource-variable`. Original copy. Fleet photographs are processed cutouts on white.

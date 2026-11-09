@@ -36,7 +36,7 @@ export function FAQ() {
         <div className="section-head">
           <p className="kicker">Questions</p>
           <h2 id="faq-title" className="display">
-            Straight answers before you inquire.
+            Straight answers before you book.
           </h2>
           <hr className="gold-rule" />
           <p className="lede">

@@ -3,10 +3,10 @@ import { formatPrice } from "../lib";
 
 type Props = {
   car: Car;
-  onInquire: (name: string) => void;
+  onBook: (car: Car) => void;
 };
 
-export function CarCard({ car, onInquire }: Props) {
+export function CarCard({ car, onBook }: Props) {
   return (
     <article className="car-card">
       <div className="car-media">
@@ -28,8 +28,8 @@ export function CarCard({ car, onInquire }: Props) {
             Min. age {car.minAge}
           </li>
         </ul>
-        <button className="btn btn-navy" type="button" onClick={() => onInquire(car.name)}>
-          Inquire
+        <button className="btn btn-navy" type="button" onClick={() => onBook(car)}>
+          Book Now
         </button>
       </div>
     </article>

@@ -2,14 +2,19 @@ import { useEffect, useState } from "react";
 import { CONTACT } from "../config";
 
 const LINKS = [
-  { href: "#fleet", label: "Fleet" },
-  { href: "#why", label: "Why MW" },
-  { href: "#how", label: "How it works" },
-  { href: "#stories", label: "Stories" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#fleet", label: "Fleet" },
+  { href: "/#why", label: "Why MW" },
+  { href: "/#how", label: "How it works" },
+  { href: "/#stories", label: "Stories" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
-export function Header() {
+type Props = {
+  homeHref?: string;
+  onBookNow: () => void;
+};
+
+export function Header({ homeHref = "/#top", onBookNow }: Props) {
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -34,11 +39,15 @@ export function Header() {
   }, []);
 
   const close = () => setOpen(false);
+  const book = () => {
+    close();
+    onBookNow();
+  };
 
   return (
     <header className={`site-header${solid ? " is-solid" : ""}`}>
       <div className="header-inner">
-        <a className="brand" href="#top" onClick={close}>
+        <a className="brand" href={homeHref} onClick={close}>
           <img src="/logo.jpg" alt="" width={46} height={46} />
           <span className="brand-text">
             <span className="brand-name">
@@ -54,9 +63,9 @@ export function Header() {
               {link.label}
             </a>
           ))}
-          <a className="btn btn-gold" href="#inquire">
-            Inquire
-          </a>
+          <button className="btn btn-gold" type="button" onClick={book}>
+            Book Now
+          </button>
         </nav>
 
         <button
@@ -96,9 +105,9 @@ export function Header() {
             {link.label}
           </a>
         ))}
-        <a className="btn btn-gold" href="#inquire" onClick={close}>
-          Inquire
-        </a>
+        <button className="btn btn-gold" type="button" onClick={book}>
+          Book Now
+        </button>
       </nav>
     </header>
   );
