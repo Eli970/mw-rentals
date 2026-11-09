@@ -4,7 +4,7 @@ import { EMPTY_INQUIRY, type InquiryDraft } from "./config";
 import type { Car } from "./types";
 import { getPath, scrollToId } from "./lib";
 import { Header } from "./components/Header";
-import { BookingBar } from "./components/BookingBar";
+import { Hero } from "./components/Hero";
 import { Fleet } from "./components/Fleet";
 import { Requirements } from "./components/Requirements";
 import { Desks } from "./components/Desks";
@@ -105,19 +105,14 @@ export default function App() {
       <div id="top">
         <Header onBookNow={() => openBooking()} />
         <main id="main">
-          <div className="masthead">
-            <div className="wrap masthead-inner">
-              <p className="masthead-line">
-                {cars.length} cars · {new Set(cars.map((c) => c.location)).size}{" "}
-                cities · from ${from}/day
-              </p>
-              <BookingBar
-                draft={draft}
-                onChange={setDraft}
-                onSearch={searchFleet}
-              />
-            </div>
-          </div>
+          <Hero
+            draft={draft}
+            onChange={setDraft}
+            onSearch={searchFleet}
+            carCount={cars.length}
+            cityCount={new Set(cars.map((c) => c.location)).size}
+            from={from}
+          />
           <Fleet
             cars={cars}
             draft={draft}

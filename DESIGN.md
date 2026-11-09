@@ -25,7 +25,8 @@ Operate-first rental desk. Light paper, navy chrome, gold used only on the Book 
 ## Layout
 
 - Sticky navy header with transparent roundel
-- Booking bar immediately under it (sticky on desktop ≥880px)
+- Full-width photo hero (navy overlay, no kicker, no gradient text)
+- Booking bar overlapping the bottom of the hero; sticky under the header on desktop ≥880px; stacked below a shorter hero on mobile
 - Fleet as the page: 1 / 2 / 3 column hairline grid
 - Requirements as a definition strip + details
 - Desks as a two-column city list
