@@ -10,21 +10,18 @@ export function Footer({ onBookNow }: Props) {
       <div className="wrap">
         <div className="footer-grid">
           <div className="footer-brand">
-            <img src="/logo.jpg" alt="MW Rentals logo" width={58} height={58} />
+            <img src="/logo.png" alt="MW Rentals logo" width={48} height={48} />
             <div>
-              <strong style={{ color: "#fff", letterSpacing: "0.06em" }}>
-                MW RENTALS
-              </strong>
+              <strong>{CONTACT.brand}</strong>
               <div>{CONTACT.tagline}</div>
             </div>
           </div>
           <nav className="footer-links" aria-label="Footer">
             <a href="/#fleet">Fleet</a>
-            <a href="/#why">Why MW</a>
-            <a href="/#how">How it works</a>
-            <a href="/#faq">FAQ</a>
+            <a href="/#requirements">Requirements</a>
+            <a href="/#desks">Desks</a>
             <button type="button" className="footer-link-btn" onClick={onBookNow}>
-              Book Now
+              Book now
             </button>
             <a href="/privacy">Privacy</a>
             <a href="/terms">Terms</a>
@@ -33,8 +30,8 @@ export function Footer({ onBookNow }: Props) {
         </div>
         <p className="legal">
           © {new Date().getFullYear()} MW Rentals. Daily rates are indicative
-          and confirmed in writing on quote. Insurance, age limits, and
-          cross-border rules vary by city and category.
+          and confirmed in writing. Insurance, age limits, and cross-border
+          rules vary by city and category.
         </p>
       </div>
     </footer>

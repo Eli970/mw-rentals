@@ -3,10 +3,8 @@ import { CONTACT } from "../config";
 
 const LINKS = [
   { href: "/#fleet", label: "Fleet" },
-  { href: "/#why", label: "Why MW" },
-  { href: "/#how", label: "How it works" },
-  { href: "/#stories", label: "Stories" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/#requirements", label: "Requirements" },
+  { href: "/#desks", label: "Desks" },
 ];
 
 type Props = {
@@ -15,19 +13,11 @@ type Props = {
 };
 
 export function Header({ homeHref = "/#top", onBookNow }: Props) {
-  const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth >= 720) setOpen(false);
+      if (window.innerWidth >= 880) setOpen(false);
     };
     const onHash = () => setOpen(false);
     window.addEventListener("resize", onResize);
@@ -45,14 +35,12 @@ export function Header({ homeHref = "/#top", onBookNow }: Props) {
   };
 
   return (
-    <header className={`site-header${solid ? " is-solid" : ""}`}>
+    <header className="site-header">
       <div className="header-inner">
         <a className="brand" href={homeHref} onClick={close}>
-          <img src="/logo.jpg" alt="" width={46} height={46} />
+          <img src="/logo.png" alt="" width={40} height={40} />
           <span className="brand-text">
-            <span className="brand-name">
-              <span>MW</span> <span>Rentals</span>
-            </span>
+            <span className="brand-name">{CONTACT.brand}</span>
             <span className="brand-tag">{CONTACT.tagline}</span>
           </span>
         </a>
@@ -64,7 +52,7 @@ export function Header({ homeHref = "/#top", onBookNow }: Props) {
             </a>
           ))}
           <button className="btn btn-gold" type="button" onClick={book}>
-            Book Now
+            Book now
           </button>
         </nav>
 
@@ -81,14 +69,14 @@ export function Header({ homeHref = "/#top", onBookNow }: Props) {
               <path
                 d="M1 1 L17 13 M17 1 L1 13"
                 stroke="currentColor"
-                strokeWidth="1.6"
+                strokeWidth="1.5"
                 fill="none"
               />
             ) : (
               <path
                 d="M0 1 H18 M0 7 H18 M0 13 H18"
                 stroke="currentColor"
-                strokeWidth="1.6"
+                strokeWidth="1.5"
               />
             )}
           </svg>
@@ -106,7 +94,7 @@ export function Header({ homeHref = "/#top", onBookNow }: Props) {
           </a>
         ))}
         <button className="btn btn-gold" type="button" onClick={book}>
-          Book Now
+          Book now
         </button>
       </nav>
     </header>

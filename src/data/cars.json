@@ -5,7 +5,11 @@
     "pricePerDay": 42,
     "image": "/cars/fiat-500.webp",
     "minAge": 21,
-    "location": "London"
+    "location": "London",
+    "seats": 4,
+    "bags": 1,
+    "transmission": "Manual",
+    "fuel": "Petrol"
   },
   {
     "name": "Volkswagen Polo",
@@ -13,7 +17,11 @@
     "pricePerDay": 48,
     "image": "/cars/volkswagen-polo.webp",
     "minAge": 21,
-    "location": "Paris"
+    "location": "Paris",
+    "seats": 5,
+    "bags": 2,
+    "transmission": "Manual",
+    "fuel": "Petrol"
   },
   {
     "name": "Hyundai i30",
@@ -21,7 +29,11 @@
     "pricePerDay": 55,
     "image": "/cars/hyundai-i30.webp",
     "minAge": 21,
-    "location": "Tokyo"
+    "location": "Tokyo",
+    "seats": 5,
+    "bags": 2,
+    "transmission": "Automatic",
+    "fuel": "Petrol"
   },
   {
     "name": "Nissan Juke",
@@ -29,7 +41,11 @@
     "pricePerDay": 68,
     "image": "/cars/nissan-juke.webp",
     "minAge": 21,
-    "location": "Tokyo"
+    "location": "Tokyo",
+    "seats": 5,
+    "bags": 2,
+    "transmission": "Automatic",
+    "fuel": "Petrol"
   },
   {
     "name": "Hyundai Accent",
@@ -37,7 +53,11 @@
     "pricePerDay": 52,
     "image": "/cars/hyundai-accent.webp",
     "minAge": 21,
-    "location": "Singapore"
+    "location": "Singapore",
+    "seats": 5,
+    "bags": 2,
+    "transmission": "Automatic",
+    "fuel": "Petrol"
   },
   {
     "name": "Audi A5 Sportback",
@@ -45,7 +65,11 @@
     "pricePerDay": 98,
     "image": "/cars/audi-a5-sportback.webp",
     "minAge": 23,
-    "location": "Paris"
+    "location": "Paris",
+    "seats": 5,
+    "bags": 3,
+    "transmission": "Automatic",
+    "fuel": "Petrol"
   },
   {
     "name": "Honda CR-V",
@@ -53,7 +77,11 @@
     "pricePerDay": 89,
     "image": "/cars/honda-cr-v.webp",
     "minAge": 23,
-    "location": "London"
+    "location": "London",
+    "seats": 5,
+    "bags": 4,
+    "transmission": "Automatic",
+    "fuel": "Petrol"
   },
   {
     "name": "Ford Expedition",
@@ -61,7 +89,11 @@
     "pricePerDay": 155,
     "image": "/cars/ford-expedition.webp",
     "minAge": 25,
-    "location": "Miami"
+    "location": "Miami",
+    "seats": 8,
+    "bags": 6,
+    "transmission": "Automatic",
+    "fuel": "Petrol"
   },
   {
     "name": "Mercedes-Benz GLE",
@@ -69,7 +101,11 @@
     "pricePerDay": 189,
     "image": "/cars/mercedes-benz-gle.webp",
     "minAge": 25,
-    "location": "Dubai"
+    "location": "Dubai",
+    "seats": 5,
+    "bags": 4,
+    "transmission": "Automatic",
+    "fuel": "Diesel"
   },
   {
     "name": "BMW 5 Series",
@@ -77,7 +113,11 @@
     "pricePerDay": 125,
     "image": "/cars/bmw-5-series.webp",
     "minAge": 23,
-    "location": "New York"
+    "location": "New York",
+    "seats": 5,
+    "bags": 3,
+    "transmission": "Automatic",
+    "fuel": "Petrol"
   },
   {
     "name": "BMW 7 Series",
@@ -85,7 +125,11 @@
     "pricePerDay": 245,
     "image": "/cars/bmw-7-series.webp",
     "minAge": 25,
-    "location": "Dubai"
+    "location": "Dubai",
+    "seats": 5,
+    "bags": 3,
+    "transmission": "Automatic",
+    "fuel": "Petrol"
   },
   {
     "name": "Porsche Panamera",
@@ -93,7 +137,11 @@
     "pricePerDay": 255,
     "image": "/cars/porsche-panamera.webp",
     "minAge": 25,
-    "location": "London"
+    "location": "London",
+    "seats": 4,
+    "bags": 2,
+    "transmission": "Automatic",
+    "fuel": "Petrol"
   },
   {
     "name": "Mercedes-AMG GT",
@@ -101,7 +149,11 @@
     "pricePerDay": 295,
     "image": "/cars/mercedes-amg-gt.webp",
     "minAge": 25,
-    "location": "Dubai"
+    "location": "Dubai",
+    "seats": 2,
+    "bags": 1,
+    "transmission": "Automatic",
+    "fuel": "Petrol"
   },
   {
     "name": "Audi RS6 Avant",
@@ -109,7 +161,11 @@
     "pricePerDay": 215,
     "image": "/cars/audi-rs6-avant.webp",
     "minAge": 25,
-    "location": "London"
+    "location": "London",
+    "seats": 5,
+    "bags": 4,
+    "transmission": "Automatic",
+    "fuel": "Petrol"
   },
   {
     "name": "Tesla Model 3",
@@ -117,7 +173,11 @@
     "pricePerDay": 95,
     "image": "/cars/tesla-model-3.webp",
     "minAge": 23,
-    "location": "New York"
+    "location": "New York",
+    "seats": 5,
+    "bags": 2,
+    "transmission": "Automatic",
+    "fuel": "Electric"
   },
   {
     "name": "Tesla Model S",
@@ -125,7 +185,11 @@
     "pricePerDay": 145,
     "image": "/cars/tesla-model-s.webp",
     "minAge": 23,
-    "location": "Los Angeles"
+    "location": "Los Angeles",
+    "seats": 5,
+    "bags": 2,
+    "transmission": "Automatic",
+    "fuel": "Electric"
   },
   {
     "name": "BMW 4 Series Coupe",
@@ -133,7 +197,11 @@
     "pricePerDay": 165,
     "image": "/cars/bmw-4-series-coupe.webp",
     "minAge": 25,
-    "location": "London"
+    "location": "London",
+    "seats": 4,
+    "bags": 2,
+    "transmission": "Automatic",
+    "fuel": "Petrol"
   },
   {
     "name": "Chevrolet Camaro",
@@ -141,6 +209,10 @@
     "pricePerDay": 135,
     "image": "/cars/chevrolet-camaro.webp",
     "minAge": 25,
-    "location": "Miami"
+    "location": "Miami",
+    "seats": 4,
+    "bags": 2,
+    "transmission": "Automatic",
+    "fuel": "Petrol"
   }
 ]
