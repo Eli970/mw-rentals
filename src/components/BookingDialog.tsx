@@ -1,18 +1,24 @@
 import { FormEvent, useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import type { InquiryDraft } from "../config";
+import { TIMES } from "../config";
 import type { Car } from "../types";
 import {
   buildInquiryMessage,
+  formatPrice,
   mailtoUrl,
   whatsappUrl,
   type InquiryPayload,
 } from "../lib";
+import { useDialog } from "../useDialog";
 
 export type BookingPrefill = {
   car?: Car;
   location: string;
   startDate: string;
+  startTime: string;
   endDate: string;
+  endTime: string;
 };
 
 type Props = {
@@ -28,25 +34,23 @@ const EMPTY: InquiryPayload = {
   phone: "",
   location: "",
   startDate: "",
+  startTime: "10:00",
   endDate: "",
+  endTime: "10:00",
   vehicle: "",
   driverAge: "",
   message: "",
 };
 
-const FOCUSABLE =
-  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
-
 export function BookingDialog({ open, draft, prefill, onClose }: Props) {
   const titleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
-  const openerRef = useRef<HTMLElement | null>(null);
   const [form, setForm] = useState<InquiryPayload>(EMPTY);
   const [sent, setSent] = useState<InquiryPayload | null>(null);
+  useDialog(open, onClose, dialogRef);
 
   useEffect(() => {
     if (!open) return;
-    openerRef.current = document.activeElement as HTMLElement | null;
     const car = prefill.car;
     setSent(null);
     setForm({
@@ -54,55 +58,12 @@ export function BookingDialog({ open, draft, prefill, onClose }: Props) {
       location:
         (prefill.location !== "All" && prefill.location) || car?.location || "",
       startDate: prefill.startDate,
+      startTime: prefill.startTime || "10:00",
       endDate: prefill.endDate,
+      endTime: prefill.endTime || "10:00",
       vehicle: car?.name || "",
     });
   }, [open, prefill]);
-
-  useEffect(() => {
-    if (!open) return;
-    const root = dialogRef.current;
-    const focusables = () =>
-      Array.from(root?.querySelectorAll<HTMLElement>(FOCUSABLE) ?? []).filter(
-        (el) => !el.hasAttribute("disabled") && el.tabIndex !== -1,
-      );
-
-    const t = window.setTimeout(() => {
-      const items = focusables();
-      (items.find((el) => el.tagName === "INPUT") ?? items[0])?.focus();
-    }, 0);
-
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        onClose();
-        return;
-      }
-      if (event.key !== "Tab") return;
-      const items = focusables();
-      if (items.length === 0) return;
-      const first = items[0];
-      const last = items[items.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    };
-
-    document.addEventListener("keydown", onKey);
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      window.clearTimeout(t);
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = previousOverflow;
-      openerRef.current?.focus();
-    };
-  }, [open, onClose]);
 
   if (!open) return null;
 
@@ -113,11 +74,10 @@ export function BookingDialog({ open, draft, prefill, onClose }: Props) {
       location: form.location || (draft.location === "All" ? "" : draft.location),
       vehicle: form.vehicle || draft.vehicle,
       startDate: form.startDate || draft.startDate,
+      startTime: form.startTime || draft.startTime,
       endDate: form.endDate || draft.endDate,
+      endTime: form.endTime || draft.endTime,
     };
-    // TODO: Replace client-side WhatsApp / mailto with a Worker API route
-    // that stores bookings (Sanity, D1, or email via Resend) and sends a
-    // confirmation. Keep this form posting JSON matching InquiryPayload.
     window.open(
       whatsappUrl(buildInquiryMessage(payload, draft)),
       "_blank",
@@ -135,14 +95,16 @@ export function BookingDialog({ open, draft, prefill, onClose }: Props) {
         prefill.car?.location ||
         "",
       startDate: prefill.startDate,
+      startTime: prefill.startTime || "10:00",
       endDate: prefill.endDate,
+      endTime: prefill.endTime || "10:00",
       vehicle: prefill.car?.name || "",
     });
   };
 
   const minAge = prefill.car?.minAge;
 
-  return (
+  return createPortal(
     <div className="dialog-root">
       <button
         type="button"
@@ -159,18 +121,18 @@ export function BookingDialog({ open, draft, prefill, onClose }: Props) {
       >
         <div className="dialog-head">
           <div>
-            <p className="kicker">Book now</p>
-            <h2 id={titleId} className="display">
-              {prefill.car ? prefill.car.name : "Reserve a vehicle"}
+            <h2 id={titleId}>
+              {prefill.car ? `Book ${prefill.car.name}` : "Book a car"}
             </h2>
             {prefill.car ? (
               <p className="dialog-sub">
-                {prefill.car.category} · {prefill.car.location} · min. age{" "}
-                {prefill.car.minAge}
+                {prefill.car.location} · {prefill.car.seats} seats · min. age{" "}
+                {prefill.car.minAge} · from {formatPrice(prefill.car.pricePerDay)}
+                /day
               </p>
             ) : (
               <p className="dialog-sub">
-                Share your details and a coordinator will confirm availability.
+                A coordinator confirms availability and the deposit.
               </p>
             )}
           </div>
@@ -180,7 +142,7 @@ export function BookingDialog({ open, draft, prefill, onClose }: Props) {
               <path
                 d="M2 2 L14 14 M14 2 L2 14"
                 stroke="currentColor"
-                strokeWidth="1.6"
+                strokeWidth="1.5"
                 fill="none"
               />
             </svg>
@@ -189,16 +151,16 @@ export function BookingDialog({ open, draft, prefill, onClose }: Props) {
 
         {sent ? (
           <div className="success" role="status">
-            <h3>Booking request ready to send.</h3>
+            <h3>Request ready to send</h3>
             <p>
               WhatsApp should have opened with a message for{" "}
-              {sent.vehicle || "a flexible vehicle"} in{" "}
-              {sent.location || "your chosen city"}. If the popup was blocked,
-              use the buttons below.
+              {sent.vehicle || "a flexible car"} in{" "}
+              {sent.location || "your chosen city"}. If it was blocked, use the
+              links below.
             </p>
             <div className="form-actions">
               <a
-                className="btn btn-gold"
+                className="btn btn-navy"
                 href={whatsappUrl(buildInquiryMessage(sent, draft))}
                 target="_blank"
                 rel="noreferrer"
@@ -206,12 +168,12 @@ export function BookingDialog({ open, draft, prefill, onClose }: Props) {
                 Open WhatsApp
               </a>
               <a
-                className="btn btn-navy"
+                className="btn btn-ghost"
                 href={mailtoUrl(buildInquiryMessage(sent, draft), sent.name)}
               >
                 Open email
               </a>
-              <button className="btn btn-outline" type="button" onClick={reset}>
+              <button className="btn btn-ghost" type="button" onClick={reset}>
                 Send another
               </button>
             </div>
@@ -219,7 +181,7 @@ export function BookingDialog({ open, draft, prefill, onClose }: Props) {
         ) : (
           <form onSubmit={onSubmit}>
             <div className="form-grid">
-              <label className="field">
+              <label className="field span-2">
                 <span>Full name</span>
                 <input
                   required
@@ -229,7 +191,7 @@ export function BookingDialog({ open, draft, prefill, onClose }: Props) {
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                 />
               </label>
-              <label className="field">
+              <label className="field span-2">
                 <span>Email</span>
                 <input
                   required
@@ -271,6 +233,20 @@ export function BookingDialog({ open, draft, prefill, onClose }: Props) {
                 />
               </label>
               <label className="field">
+                <span>Pickup time</span>
+                <select
+                  name="startTime"
+                  value={form.startTime}
+                  onChange={(e) => setForm({ ...form, startTime: e.target.value })}
+                >
+                  {TIMES.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="field">
                 <span>Return date</span>
                 <input
                   type="date"
@@ -280,6 +256,20 @@ export function BookingDialog({ open, draft, prefill, onClose }: Props) {
                   value={form.endDate}
                   onChange={(e) => setForm({ ...form, endDate: e.target.value })}
                 />
+              </label>
+              <label className="field">
+                <span>Return time</span>
+                <select
+                  name="endTime"
+                  value={form.endTime}
+                  onChange={(e) => setForm({ ...form, endTime: e.target.value })}
+                >
+                  {TIMES.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
               </label>
               <label className="field">
                 <span>Driver age</span>
@@ -296,7 +286,7 @@ export function BookingDialog({ open, draft, prefill, onClose }: Props) {
                 />
               </label>
               <label className="field">
-                <span>Vehicle</span>
+                <span>Car</span>
                 <input
                   name="vehicle"
                   value={form.vehicle}
@@ -311,20 +301,21 @@ export function BookingDialog({ open, draft, prefill, onClose }: Props) {
                   name="message"
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder="Child seats, additional drivers, one-way, delivery address…"
+                  placeholder="Child seats, extra drivers, one-way, delivery…"
                 />
               </label>
               <button className="btn btn-navy btn-full span-2" type="submit">
                 Send via WhatsApp
               </button>
               <p className="form-note span-2">
-                Submitting opens a prefilled WhatsApp chat. No data is stored on
-                this site yet.
+                Opens a prefilled WhatsApp chat. Nothing is stored on this site
+                yet.
               </p>
             </div>
           </form>
         )}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

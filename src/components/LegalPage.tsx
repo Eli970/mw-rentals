@@ -12,11 +12,11 @@ type Props = {
 const PRIVACY = [
   {
     title: "1. Who we are",
-    body: `This Privacy Policy describes how ${CONTACT.brand} (“MW Rentals”, “we”, “us”) collects and uses information when you visit mwrentals.com, submit a booking request, or otherwise contact our concierge desk. This page is a template for client review and is not legal advice.`,
+    body: `This Privacy Policy describes how ${CONTACT.brand} (“MW Rentals”, “we”, “us”) collects and uses information when you visit mwrentals.com, submit a booking request, or otherwise contact our desk. This page is a template for client review and is not legal advice.`,
   },
   {
     title: "2. Information we collect",
-    body: "When you use the Book Now form we collect the details you provide: name, email address, telephone number, pickup location, pickup and return dates, driver age, vehicle requested, and any notes. If you contact us by WhatsApp, telephone, or email we also receive whatever you send on those channels. Server logs may record IP address, browser type, and pages visited.",
+    body: "When you use the Book Now form we collect the details you provide: name, email address, telephone number, pickup location, pickup and return dates and times, driver age, vehicle requested, and any notes. If you contact us by WhatsApp, telephone, or email we also receive whatever you send on those channels. Server logs may record IP address, browser type, and pages visited.",
   },
   {
     title: "3. How we use it",
@@ -107,7 +107,7 @@ const TERMS = [
   },
   {
     title: "12. Contact",
-    body: `Concierge desk: ${CONTACT.email}, ${CONTACT.phoneDisplay}. ${CONTACT.hours}.`,
+    body: `Desk: ${CONTACT.email}, ${CONTACT.phoneDisplay}. ${CONTACT.hours}.`,
   },
 ];
 
@@ -126,13 +126,10 @@ export function LegalPage({ kind, onBookNow }: Props) {
         <main id="main" className="legal-page">
           <header className="legal-hero">
             <div className="wrap">
-              <p className="kicker">Legal</p>
-              <h1 className="display">{title}</h1>
-              <hr className="gold-rule" />
+              <h1>{title}</h1>
               <p className="lede">
-                Last updated {updated}. This is a generic {title.toLowerCase()}{" "}
-                template for a short- and long-term car-hire business. Have it
-                reviewed by counsel before relying on it.
+                Last updated {updated}. Template for a short- and long-term
+                car-hire business. Have counsel review it before you rely on it.
               </p>
             </div>
           </header>
@@ -149,7 +146,7 @@ export function LegalPage({ kind, onBookNow }: Props) {
               </section>
             ))}
             <p>
-              <a href="/">← Back to MW Rentals</a>
+              <a href="/">Back to MW Rentals</a>
             </p>
           </div>
         </main>

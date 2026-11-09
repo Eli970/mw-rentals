@@ -3,62 +3,54 @@ import { formatPrice } from "../lib";
 
 type Props = {
   car: Car;
+  onOpen: (car: Car) => void;
   onBook: (car: Car) => void;
 };
 
-export function CarCard({ car, onBook }: Props) {
+export function CarCard({ car, onOpen, onBook }: Props) {
   return (
     <article className="car-card">
-      <div className="car-media">
-        <img src={car.image} alt={`${car.name} available in ${car.location}`} loading="lazy" />
+      <button
+        type="button"
+        className="car-media"
+        onClick={() => onOpen(car)}
+        aria-label={`View ${car.name}`}
+      >
+        <img src={car.image} alt="" />
         <span className="badge">{car.category}</span>
-      </div>
+      </button>
       <div className="car-body">
-        <h3>{car.name}</h3>
-        <p className="price">
-          {formatPrice(car.pricePerDay)} <span>/ day</span>
-        </p>
-        <ul className="car-meta">
+        <div className="car-title-row">
+          <h3>
+            <button type="button" className="car-name" onClick={() => onOpen(car)}>
+              {car.name}
+            </button>
+          </h3>
+          <p className="price">
+            <span className="price-from">from</span> {formatPrice(car.pricePerDay)}
+            <span className="price-unit">/day</span>
+          </p>
+        </div>
+        <ul className="car-specs">
+          <li>{car.seats} seats</li>
           <li>
-            <MetaPin />
-            {car.location}
+            {car.bags} {car.bags === 1 ? "bag" : "bags"}
           </li>
-          <li>
-            <MetaAge />
-            Min. age {car.minAge}
-          </li>
+          <li>{car.transmission}</li>
+          <li>{car.fuel}</li>
         </ul>
-        <button className="btn btn-navy" type="button" onClick={() => onBook(car)}>
-          Book Now
-        </button>
+        <p className="car-meta-line">
+          {car.location} · Min. age {car.minAge}
+        </p>
+        <div className="car-actions">
+          <button className="btn btn-ghost" type="button" onClick={() => onOpen(car)}>
+            Details
+          </button>
+          <button className="btn btn-navy" type="button" onClick={() => onBook(car)}>
+            Book now
+          </button>
+        </div>
       </div>
     </article>
-  );
-}
-
-function MetaPin() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" fill="none">
-      <path
-        d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      />
-      <circle cx="12" cy="10" r="2.2" stroke="currentColor" strokeWidth="1.6" />
-    </svg>
-  );
-}
-
-function MetaAge() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" fill="none">
-      <circle cx="12" cy="8" r="3.2" stroke="currentColor" strokeWidth="1.6" />
-      <path
-        d="M5 19.2c.8-3.4 3.5-5.2 7-5.2s6.2 1.8 7 5.2"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-    </svg>
   );
 }
