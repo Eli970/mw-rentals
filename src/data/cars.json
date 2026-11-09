@@ -1,0 +1,146 @@
+[
+  {
+    "name": "Fiat 500",
+    "category": "Economy",
+    "pricePerDay": 42,
+    "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 21,
+    "location": "London"
+  },
+  {
+    "name": "Volkswagen Polo",
+    "category": "Economy",
+    "pricePerDay": 48,
+    "image": "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 21,
+    "location": "Paris"
+  },
+  {
+    "name": "Hyundai i30",
+    "category": "Compact",
+    "pricePerDay": 55,
+    "image": "https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 21,
+    "location": "Tokyo"
+  },
+  {
+    "name": "Nissan Juke",
+    "category": "Compact",
+    "pricePerDay": 68,
+    "image": "https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 21,
+    "location": "Tokyo"
+  },
+  {
+    "name": "Hyundai Accent",
+    "category": "Sedan",
+    "pricePerDay": 52,
+    "image": "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 21,
+    "location": "Singapore"
+  },
+  {
+    "name": "Audi A5 Sportback",
+    "category": "Sedan",
+    "pricePerDay": 98,
+    "image": "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 23,
+    "location": "Paris"
+  },
+  {
+    "name": "Honda CR-V",
+    "category": "SUV",
+    "pricePerDay": 89,
+    "image": "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 23,
+    "location": "London"
+  },
+  {
+    "name": "Ford Expedition",
+    "category": "SUV",
+    "pricePerDay": 155,
+    "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 25,
+    "location": "Miami"
+  },
+  {
+    "name": "Mercedes-Benz GLE",
+    "category": "SUV",
+    "pricePerDay": 189,
+    "image": "https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 25,
+    "location": "Dubai"
+  },
+  {
+    "name": "BMW 5 Series",
+    "category": "Sedan",
+    "pricePerDay": 125,
+    "image": "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 23,
+    "location": "New York"
+  },
+  {
+    "name": "BMW 7 Series",
+    "category": "Luxury",
+    "pricePerDay": 245,
+    "image": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 25,
+    "location": "Dubai"
+  },
+  {
+    "name": "Porsche Panamera",
+    "category": "Luxury",
+    "pricePerDay": 255,
+    "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 25,
+    "location": "London"
+  },
+  {
+    "name": "Mercedes-AMG GT",
+    "category": "Luxury",
+    "pricePerDay": 295,
+    "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 25,
+    "location": "Dubai"
+  },
+  {
+    "name": "Audi RS6 Avant",
+    "category": "Luxury",
+    "pricePerDay": 215,
+    "image": "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 25,
+    "location": "London"
+  },
+  {
+    "name": "Tesla Model 3",
+    "category": "Electric",
+    "pricePerDay": 95,
+    "image": "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 23,
+    "location": "New York"
+  },
+  {
+    "name": "Tesla Model S",
+    "category": "Electric",
+    "pricePerDay": 145,
+    "image": "https://images.unsplash.com/photo-1536700503339-1e4b06520771?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 23,
+    "location": "Los Angeles"
+  },
+  {
+    "name": "BMW 4 Series Coupe",
+    "category": "Sports",
+    "pricePerDay": 165,
+    "image": "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 25,
+    "location": "London"
+  },
+  {
+    "name": "Chevrolet Camaro",
+    "category": "Sports",
+    "pricePerDay": 135,
+    "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1400&q=80",
+    "minAge": 25,
+    "location": "Miami"
+  }
+]
